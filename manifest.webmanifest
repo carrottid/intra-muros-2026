@@ -1,0 +1,12 @@
+{
+  "name": "연극 <인트라 무로스> 정산판",
+  "short_name": "인무 정산판",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#e3e6e9",
+  "theme_color": "#13325e",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

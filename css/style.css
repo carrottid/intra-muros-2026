@@ -1,0 +1,307 @@
+/* =====================================================================
+   인트라 무로스 정산판 — 스타일
+   스케줄표 색상은 NOL 캐스팅 스케줄 이미지에서 추출한 값입니다.
+   ===================================================================== */
+:root {
+  --page: #e3e6e9;        /* 페이지 바탕 */
+  --navy: #13325e;        /* 표 헤더 (NOL) */
+  --brand: #1D4763;       /* 로고색 */
+  --ink: #223f69;         /* 표 본문 글자 (NOL) */
+  --ink-2: #4a6383;
+  --dim: #6f7f93;
+  --line-day: #b3bcc8;    /* 날짜 사이 구분선 (NOL) */
+  --line-show: #2a4a73;   /* 같은 날 회차 사이 구분선 (NOL) */
+  --off-band: #d1d8e0;    /* 공연없음 띠 (NOL) */
+  --off-text: #98a5b5;
+  --sat: #2f86c4;         /* 토요일 (NOL) */
+  --sun: #d45f60;         /* 일요일·공휴일 (NOL) */
+  --first: #00a3b7;       /* 첫공 뱃지 (NOL) */
+  --last: #d45f60;        /* 막공 뱃지 */
+  --seen: rgba(0, 163, 183, .11);   /* 관람한 회차 */
+  --poster-bg: #0a1c2e;   /* 정산판 바탕 */
+  --p-ink: #e6eef5;
+  --p-dim: #8da3b8;
+  --p-title: #aac7dd;
+  --p-frame: #35536e;
+  --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', sans-serif;
+  --black: 'Pirata One', 'Noto Serif KR', serif;
+  --italic: 'Cormorant Garamond', 'Times New Roman', serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+}
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; }
+h2 { margin: 0; font-weight: 700; letter-spacing: .02em; }
+
+/* ───────── 헤더 ───────── */
+.site-header { text-align: center; padding: 34px 16px 6px; }
+.site-logo { width: min(640px, 88vw); margin: 0 auto; }
+.site-title { width: min(236px, 44vw); margin: calc(min(640px, 88vw) * -.12) auto 0; position: relative; }
+.venue { margin: 10px auto 0; font-size: 15px; font-weight: 600; letter-spacing: .14em; color: var(--brand); text-align: center; }
+
+/* ───────── 도구 모음 ───────── */
+.toolbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  max-width: 1000px; margin: 18px auto 0; padding: 12px 16px;
+  border-top: 1px solid rgba(19, 50, 94, .18); border-bottom: 1px solid rgba(19, 50, 94, .18);
+}
+.tool-buttons { display: flex; gap: 6px; }
+.toolbar button, .poster-toolbar button {
+  padding: 7px 14px; border: 1px solid #b7c2d0; border-radius: 4px;
+  background: #fff; color: var(--navy); font-size: 13px; font-weight: 600; letter-spacing: .02em;
+}
+.toolbar button:hover, .poster-toolbar button:hover { border-color: var(--navy); }
+.toolbar button.danger { color: #c0392b; }
+.save-state { margin-left: auto; font-size: 12px; color: var(--dim); }
+
+/* ───────── 배우 필터 ───────── */
+.filter { max-width: 1000px; margin: 0 auto; padding: 22px 16px 8px; }
+.filter-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-bottom: 12px; }
+.filter-head h2 { font-size: 22px; color: var(--navy); }
+.filter-help { margin: 0; font-size: 12.5px; color: var(--dim); }
+.filter-groups { display: flex; flex-direction: column; gap: 8px; }
+.filter-group { display: flex; align-items: flex-start; gap: 6px; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; min-width: 0; }
+.filter-role { width: 62px; flex: none; padding-top: 6px; font-weight: 700; font-size: 15px; color: var(--navy); }
+.chip {
+  padding: 6px 13px; border: 1px solid #b7c2d0; border-radius: 999px;
+  background: #fff; color: var(--ink); font-size: 14px; font-weight: 600;
+  transition: background .12s, border-color .12s;
+}
+.chip:hover { border-color: var(--navy); }
+.chip.on { background: var(--navy); border-color: var(--navy); color: #fff; }
+.chip.all { font-size: 13px; font-weight: 500; color: var(--dim); }
+.chip.all.on { background: #5b6b80; border-color: #5b6b80; color: #fff; }
+.filter-summary { margin-top: 12px; font-size: 14px; color: var(--ink); min-height: 1.5em; }
+.filter-summary b { color: var(--navy); font-weight: 700; }
+
+/* ───────── 스케줄표 (NOL 캐스팅 스케줄 디자인) ───────── */
+.schedule-section { padding: 14px 10px 44px; }
+.sched-card {
+  position: relative; max-width: 1000px; margin: 0 auto; padding: 0 16px 20px;
+  background: #ededed url(../images/paper.png); border: 1px solid rgba(19, 50, 94, .14); border-radius: 14px;
+  box-shadow: 0 2px 14px rgba(19, 50, 94, .10); overflow: hidden;
+}
+.sched-title { position: relative; height: 96px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 -16px 0; }
+.sched-title .wm { position: absolute; left: 50%; top: -18px; width: 112%; max-width: none; transform: translateX(-50%); opacity: .2; pointer-events: none; }
+.sched-title h2 { position: relative; font-family: var(--black); font-weight: 400; font-size: 46px; line-height: 1; letter-spacing: .005em; color: var(--navy); }
+.sched-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sched { border-collapse: collapse; width: 100%; min-width: 900px; margin: 0 auto; }
+.sched th, .sched td { padding: 0; vertical-align: middle; text-align: center; }
+
+/* 헤더 */
+.sched thead th {
+  height: 44px; background: var(--navy); color: #fff;
+  font-size: 15px; font-weight: 600; letter-spacing: .02em; white-space: nowrap;
+}
+.sched thead th.band, .sched thead th.tags { background: transparent; }
+
+/* 본문 셀 */
+.sched tbody td.cell { height: 46px; color: var(--ink); font-size: 15px; font-weight: 500; border-top: 1px solid var(--line-day); }
+.sched tbody tr:first-child td.cell { border-top: 0; }
+.sched tbody tr.cont td.cell { border-top: 1px solid var(--line-show); }   /* 같은 날 두 번째 회차: 시간 칸부터 진한 선 */
+.sched tbody tr:last-child td.cell { border-bottom: 1px solid var(--line-day); }
+.sched tbody tr.seen td.cell:not(.date):not(.wd) { background: var(--seen); }
+.sched tbody tr.seen td.time { box-shadow: inset 3px 0 0 var(--first); }
+
+/* 날짜·요일·시간 */
+.sched td.date { width: 128px; font-weight: 600; white-space: nowrap; letter-spacing: -.01em; }
+.sched td.date .d-short, .sched td.date .w { display: none; }
+.sched td.wd { width: 60px; font-weight: 600; }
+.sched td.time { width: 78px; font-weight: 500; }
+.sched td.date.sat, .sched td.wd.sat, .sched td.time.sat { color: var(--sat); }
+.sched td.date.sun, .sched td.wd.sun, .sched td.time.sun { color: var(--sun); }
+.sched tr.off td.cell { background: var(--off-band); color: var(--off-text); font-weight: 500; }
+.sched td.offcell { font-size: 15px; }
+.sched td.time .d-tags { display: none; flex-wrap: wrap; justify-content: center; gap: 2px 3px; margin-top: 3px; }
+.sched td.time .d-tags .tag { margin: 0; padding: 1px 5px; font-size: 9px; line-height: 1.4; }
+
+/* 배우 셀 */
+.sched td.cast { width: 104px; font-size: 15px; font-weight: 500; white-space: nowrap; }
+.sched td.cast.hit { font-weight: 700; color: var(--navy); }
+.sched td.cast .nm { position: relative; display: inline-block; }
+.badge {
+  position: absolute; left: calc(100% + 5px); top: 50%; transform: translateY(-50%) skewX(-10deg);
+  padding: 0 5px; border: 1.5px solid var(--first); border-radius: 1px; white-space: nowrap;
+  font-size: 9.5px; font-weight: 700; line-height: 1.45; color: var(--first); background: rgba(255, 255, 255, .5);
+}
+.badge.last { border-color: var(--last); color: var(--last); }
+
+/* 좌석 셀 */
+.sched td.seat { width: 118px; padding: 0 6px; }
+.seat-input {
+  width: 104px; height: 28px; padding: 0 8px; border: 1px solid #9fb0c4; border-radius: 3px;
+  background: #fff; color: var(--ink); font-family: var(--sans); font-size: 12px; font-weight: 500;
+  text-align: center; letter-spacing: 0; text-transform: uppercase;
+}
+.seat-input::placeholder { color: #aab5c3; text-transform: none; font-weight: 400; }
+.seat-input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 2px rgba(19, 50, 94, .16); }
+.seat-input.filled { border-color: var(--navy); color: var(--navy); font-weight: 700; }
+.seat-input.invalid { border-color: #d98700; background: #fff5e3; color: #9a5b00; font-weight: 500; }
+#toast {
+  position: fixed; left: 50%; bottom: 28px; z-index: 50; transform: translateX(-50%);
+  max-width: calc(100vw - 32px); padding: 10px 16px; border: 1px solid #2a4a73; border-radius: 4px;
+  background: rgba(19, 50, 94, .96); color: #fff; font-size: 13px; line-height: 1.5; text-align: center;
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+#toast.on { opacity: 1; }
+#toast br.m { display: none; }
+@media (max-width: 760px) { #toast br.m { display: inline; } }
+
+/* 왼쪽 세로 밴드 (BANDS 사용 시) */
+.sched td.band, .sched th.band { width: 22px; min-width: 22px; padding: 0 1px; }
+.sched td.band .band-in { position: relative; width: 20px; height: 100%; min-height: 46px; color: #fff; font-size: 12px; font-weight: 500; letter-spacing: .12em; }
+.sched td.band .band-in span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg); white-space: nowrap; }
+.sched td.band { height: 1px; }
+.sched td.band > div { height: 100%; }
+
+/* 오른쪽 태그 */
+.sched td.tags, .sched th.tags { width: 112px; padding-left: 8px; text-align: left; }
+.tag { display: block; width: fit-content; margin: 2px 0; padding: 3px 9px; color: #fff; font-size: 11px; font-weight: 500; white-space: nowrap; }
+
+.sched-note { margin: 18px 4px 0; font-size: 12px; line-height: 1.7; color: var(--ink-2); text-align: center; }
+.sched-note b { color: var(--navy); }
+.sched-note .ni { display: block; }
+.sched-note br.m { display: none; }
+@media (max-width: 760px) {
+  .sched-note { text-align: left; padding: 0 6px; }
+  .sched-note .ni { display: flex; align-items: flex-start; gap: 5px; }
+  .sched-note .ni .mk { flex: none; }
+  .sched-note .ni .tx { flex: 1; min-width: 0; }
+  .sched-note .ni + .ni { margin-top: 9px; }
+  .sched-note br.m { display: inline; }
+}
+
+/* ───────── 정산판 ───────── */
+.poster-section { padding: 30px 12px 56px; }
+.poster-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 12px; max-width: 1500px; margin: 0 auto 12px; }
+.poster-toolbar button { flex: none; }
+.poster-toolbar button.dl { background: var(--navy); border-color: var(--navy); color: #fff; }
+.poster-toolbar button.dl:disabled { opacity: .5; cursor: progress; }
+.poster-viewport { position: relative; width: 100%; max-width: 1500px; margin: 0 auto; overflow: hidden; }
+.poster {
+  position: relative; transform-origin: 0 0; overflow: hidden;
+  background: var(--poster-bg); color: var(--p-ink); font-family: var(--sans);
+}
+.poster .p-bg { position: absolute; inset: 0; background: var(--poster-bg) url(../images/bg-settlement.jpg) center top / cover no-repeat; }
+.poster .p-inner { position: relative; }
+
+.poster-a { width: 1500px; }
+.poster-a .p-inner { padding: 34px 44px 44px; }
+
+/* 머리: 로고 + 한글 제목 + 기간 */
+.p-head { position: relative; text-align: center; margin-bottom: 24px; }
+.p-head .p-logo { width: 460px; margin: 0 auto; }
+.p-head .p-title { width: 184px; margin: -54px auto 0; position: relative; }
+.p-head .p-venue { margin-top: 8px; font-size: 13px; font-weight: 500; letter-spacing: .16em; color: var(--p-dim); }
+.p-credit { position: absolute; right: 0; bottom: -4px; font-family: var(--italic); font-style: italic; font-weight: 500; font-size: 17px; letter-spacing: .02em; color: rgba(219, 231, 240, .22); line-height: 1; white-space: nowrap; }
+
+/* 사진 슬롯 — 5개 역할 15명 모두 같은 크기 (140 × 198, 공식 캐스트 타일 비율 640:906) */
+.p-photo { position: relative; width: 100%; aspect-ratio: 640 / 906; overflow: hidden; border: 1px solid var(--p-frame); background: #0d1f31; }
+.p-photo img { width: 100%; height: 100%; object-fit: cover; }
+.p-photo .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: rgba(230, 238, 245, .3); font-size: 13px; letter-spacing: .06em; }
+.p-photo.has-img .ph { display: none; }
+.p-actor { width: 140px; flex: none; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.p-name { margin-top: 10px; font-size: 17px; font-weight: 600; line-height: 1.2; letter-spacing: .02em; }
+.p-count { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin-top: 4px; font-size: 14px; color: var(--p-dim); line-height: 1.5; white-space: nowrap; }
+.p-count .seen { font-size: 20px; font-weight: 700; color: var(--p-ink); }
+.p-count .seen.zero { color: var(--p-dim); font-weight: 500; }
+
+/* 그룹 제목 */
+.p-group { width: 452px; }
+.p-group-title { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+.p-group-title span { font-size: 23px; font-weight: 700; color: var(--p-title); letter-spacing: .1em; white-space: nowrap; }
+.p-group-title small { font-family: var(--italic); font-style: italic; font-size: 16px; color: var(--p-dim); letter-spacing: .02em; white-space: nowrap; }
+.p-group-title::after { content: ''; flex: 1; height: 1px; background: rgba(219, 231, 240, .22); }
+.p-row { display: flex; gap: 16px; }
+
+/* 3열 격자: 1줄 앙쥬·케빈·알리스 / 2줄 리샤르·잔느·좌석배치도 */
+.p-grid { display: grid; grid-template-columns: repeat(3, 452px); gap: 30px 28px; }
+.p-mapcell { display: flex; flex-direction: column; justify-content: space-between; }
+.p-mapcell .p-seatmap { width: 100%; }
+.p-mapcell .p-total { padding-top: 12px; }
+
+/* 총 관람 */
+.p-total-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; }
+.p-total-lh { display: flex; flex-direction: column; align-items: flex-start; }
+.p-total-label { font-size: 20px; font-weight: 700; color: var(--p-title); letter-spacing: .12em; white-space: nowrap; line-height: normal; }
+.p-total-num { line-height: normal; white-space: nowrap; }
+.p-total-num { margin-bottom: -8px; }
+.p-total-num .seen { font-size: 64px; font-weight: 700; color: var(--p-ink); letter-spacing: -.02em; }
+.p-total-num .of { margin-left: 6px; font-size: 24px; color: var(--p-dim); }
+.p-legend { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 6px 10px; margin-top: 8px; font-size: 11px; color: var(--p-dim); white-space: nowrap; }
+.p-legend .sw { display: inline-block; width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 2px; }
+.p-legend .bar { display: inline-block; width: 120px; height: 12px; margin: 0 6px; vertical-align: -2px; border-radius: 2px; }
+
+/* 좌석배치도 */
+.p-seatmap svg { display: block; width: 100%; height: auto; }
+.p-seatmap .lbl { font-family: 'Pretendard', sans-serif; font-weight: 600; fill: var(--p-dim); }
+.p-seatmap .stage { fill: rgba(170, 199, 221, .14); stroke: rgba(170, 199, 221, .4); }
+.p-seatmap .stage-t { font-family: 'Pretendard', sans-serif; font-weight: 700; letter-spacing: .3em; fill: var(--p-ink); }
+.p-seatmap .wc { fill: none; stroke: #2e4a66; stroke-width: .8; stroke-dasharray: 2 1.5; }
+
+
+/* ───────── 반응형 ───────── */
+@media (max-width: 760px) {
+  body { font-size: 14px; }
+  .site-header { padding-top: 26px; }
+  .site-header .venue { font-size: 12px; letter-spacing: .08em; }
+  .toolbar { gap: 8px 12px; }
+  .save-state { width: 100%; margin-left: 0; }
+  .filter-role { width: 54px; font-size: 14px; }
+  .chip { padding: 5px 10px; font-size: 13px; }
+  .poster-section { padding: 22px 8px 40px; }
+}
+
+/* 좁은 화면: 요일 열을 날짜 칸에 합쳐 [일시][시간][배우 5명][좌석]이 모두 한 줄씩, 가로 스크롤 없이 표시 */
+@media (max-width: 760px) {
+  .schedule-section { padding: 10px 4px 30px; }
+  .sched-card { padding: 0 3px 14px; border-radius: 10px; }
+  .sched-title { height: 64px; margin: 0 -3px; }
+  .sched-title h2 { font-size: 32px; }
+  .sched-title .wm { top: -8px; }
+  .sched { min-width: 0; width: 100%; table-layout: fixed; }
+  .sched thead th { height: 30px; font-size: 11px; }
+  .sched th.band { width: 10px; }
+  .sched th.date, .sched td.date { width: 48px; }
+  .sched th.wd, .sched td.wd { display: none; }
+  .sched th.time, .sched td.time { width: 36px; }
+  .sched th.seat, .sched td.seat { width: 54px; }
+  .sched thead th.tags, .sched td.tags { display: none; }
+  .sched td.time .d-tags { display: flex; }
+  .sched tbody td.cell { height: 32px; font-size: 10.5px; }   /* 글자 대비 행 높이를 데스크톱(46/15)과 같은 비율로 */
+  .sched td.date { padding: 0 1px; font-size: 9.5px; letter-spacing: -.02em; white-space: nowrap; }
+  .sched td.date .d-long { display: none; }
+  .sched td.date .d-short { display: inline; }
+  .sched td.date .w { display: inline; margin-left: 2px; }
+  .sched td.time { font-size: 10px; letter-spacing: -.02em; }
+  .sched td.offcell { font-size: 10.5px; }
+  .sched td.cast { width: auto; padding: 0; font-size: 10px; letter-spacing: -.03em; }
+  /* 첫공·막공 뱃지: 모바일에서도 이름 오른쪽에 띄워 붙임 (이름은 다른 행과 같은 자리에 고정, 뱃지는 옆 칸 여백으로 삐져나감) */
+  .sched td.cast .badge { left: calc(100% + 1px); top: 50%; transform: translateY(-50%) skewX(-10deg); padding: 0 1px; border-width: 1px; font-size: 5.5px; letter-spacing: -.04em; line-height: 1.5; }
+  .sched td.seat { padding: 3px 1px 3px 8px; }   /* 잔느 칸 뱃지가 좌석 입력칸을 덮지 않도록 왼쪽 여백 */
+  .seat-input { width: 100%; height: 22px; padding: 0 1px; font-size: 9px; }
+  .sched td.band, .sched th.band { width: 10px; min-width: 10px; padding: 0 1px; }
+  .sched td.band .band-in { width: 8px; font-size: 9.5px; letter-spacing: .04em; }
+  .sched-note { font-size: 11px; margin-top: 10px; }
+}
+
+@media (max-width: 350px) {
+  .sched td.cast { font-size: 9px; }
+  .sched td.cast .badge { font-size: 5px; }
+  .sched td.date { font-size: 8.5px; }
+  .sched th.date, .sched td.date { width: 42px; }
+  .sched th.time, .sched td.time { width: 33px; }
+  .sched td.time { font-size: 9px; }
+  .sched th.seat, .sched td.seat { width: 48px; }
+  .seat-input { font-size: 8px; }
+}
