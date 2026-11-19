@@ -165,7 +165,7 @@ h2 { margin: 0; font-weight: 700; letter-spacing: .02em; }
 .sched td.band > div { height: 100%; }
 
 /* 오른쪽 태그 */
-.sched td.tags, .sched th.tags { width: 112px; padding-left: 8px; text-align: left; }
+.sched td.tags, .sched th.tags { width: 64px; padding-left: 8px; text-align: left; }
 .tag { display: block; width: fit-content; margin: 2px 0; padding: 3px 9px; color: #fff; font-size: 11px; font-weight: 500; white-space: nowrap; }
 
 .sched-note { margin: 18px 4px 0; font-size: 12px; line-height: 1.7; color: var(--ink-2); text-align: center; }
@@ -277,7 +277,8 @@ h2 { margin: 0; font-weight: 700; letter-spacing: .02em; }
   .sched th.time, .sched td.time { width: 36px; }
   .sched th.seat, .sched td.seat { width: 54px; }
   .sched thead th.tags, .sched td.tags { display: none; }
-  .sched td.time .d-tags { display: flex; }
+  .sched td.time .d-tags { display: flex; margin-top: 1px; }
+  .sched td.time .d-tags .tag { padding: 0 4px; font-size: 7.5px; line-height: 1.4; }   /* 전관 칩: 행 높이(32px)를 키우지 않는 크기 */
   .sched tbody td.cell { height: 32px; font-size: 10.5px; }   /* 글자 대비 행 높이를 데스크톱(46/15)과 같은 비율로 */
   .sched td.date { padding: 0 1px; font-size: 9.5px; letter-spacing: -.02em; white-space: nowrap; }
   .sched td.date .d-long { display: none; }

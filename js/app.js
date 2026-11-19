@@ -166,7 +166,7 @@
     return BANDS.find(b => b.col === col && i >= ORDER[b.from] && i <= ORDER[b.to]) || null;
   }
   const pad2 = n => String(n).padStart(2, '0');
-  function dateLong(d) { const [m, day] = d.split('.'); return `${m}월 ${pad2(day)}일`; }
+  function dateLong(d) { const [m, day] = d.split('.'); return `${pad2(m)}월 ${pad2(day)}일`; }   // NOL 표와 같이 '01월 01일'
 
   function renderSchedule() {
     const rows = visibleRows();
